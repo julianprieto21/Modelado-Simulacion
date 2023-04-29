@@ -10,8 +10,8 @@ c = ((1 + eps/2) + eps/2) - 1;
 d = (1 + (eps/2 + eps/2)) - 1;
 
 # 5
-j = 1:25;
-f = cos(pi + 2*pi*10.^j);
+j = 1:25
+f = cos(pi + 2*pi*10.^j)
 
 # 7
 a = 0;
@@ -36,10 +36,10 @@ endfor
 # Ejercicio 8
 for n=1:20
   n
-  printf("a\n")
-  (3/4)^n
-  printf("b\n")
-  (7/8)^(n^2)
-  printf("c\n")
-  (2/3)^(2*n)
+  printf("a\n");
+  (3/4)^n;
+  printf("b\n");
+  (7/8)^(n^2);
+  printf("c\n");
+  (2/3)^(2*n);
 endfor
