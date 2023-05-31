@@ -25,13 +25,15 @@ class Ecuaciones_no_lineales():
             return "Error: No hay raiz en el intervalo"
         for i in range(1,n+1):
             c = (a + b) / 2
-            if (self.f(c) < 0):
-                if self.print: print(f"Iteracion: {i}: {self.f(c)} con x = {c}")
-                b = c
-            elif (self.f(c) > 0):
+            if (self.f(c) == 0):
+                return f"Raiz encontrada con {n} iteraciones en x = {c} --> {self.f(c)}"
+            if (self.f(c) > 0):
                 if self.print: print(f"Iteracion: {i}: {self.f(c)} con x = {c}")
                 a = c
-        return f"Raiz encontrada con {n} iteraciones en x = {c}"
+            elif (self.f(c) < 0):
+                if self.print: print(f"Iteracion: {i}: {self.f(c)} con x = {c}")
+                b = c
+        return f"Raiz encontrada con {n} iteraciones en x = {c} --> {self.f(c)}"
     
     def newton_raphson(self, x_0, n):
         if (self.f_prima == 0):
@@ -56,16 +58,35 @@ class Ecuaciones_no_lineales():
     def punto_fijo(self):
         pass
 
-def f(x): return e**(-x) - 2*x
+    def biseccion2(self, intervalo, n):
+        a = intervalo[0]
+        b = intervalo[1]
+        if (self.f(a)*self.f(b) > 0):
+            return "Error: No hay raiz en el intervalo"
+        for i in range(1,n+1):
+            c = (a + b) / 2
+            if (self.f(c) == 0):
+                return f"Raiz encontrada con {n} iteraciones en x = {c} --> {self.f(c)} --> (a = {a}, b = {b})"
+            if (self.f(c) * self.f(a) < 0):
+                if self.print: print(f"Iteracion: {i}: {self.f(c)} con x = {c}")
+                b = c
+            else:
+                if self.print: print(f"Iteracion: {i}: {self.f(c)} con x = {c}")
+                a = c
+        return f"Raiz encontrada con {n} iteraciones en x = {c} --> {self.f(c)} --> (a = {a}, b = {b})"
+
+def f(x): return e**-x - 2*x
+
+def f2(x): return -2*x**3 + 6*x -1
 
 def f_prima(x): return -e**(-x) - 2
 
 metodo = Ecuaciones_no_lineales(f, print=False)
-metodo.set_f_prima(f_prima)
-# print(metodo.biseccion([0, 1], 5)) # x = 0.3437
+# metodo.set_f_prima(f_prima)
+print(metodo.biseccion([0, 1], 10)) # x = 0.3437
 # print(metodo.newton_raphson(0, 2)) # x = 0.3516
 # print(metodo.secante(-4, 2, 5)) # x = 0.3517
-print(metodo.orden_convergencia(-4, 2, 8)) # ????
+# print(metodo.orden_convergencia(-4, 2, 8)) # ????
 
 class Ecuaciones_lineales():
     def __init__(self):
