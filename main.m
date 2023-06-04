@@ -1,12 +1,13 @@
 f =@(x) tan(x) - (5*cos(x));
 format long;
 % Combinaciones de x0 y x1
-combinaciones = [0.5, 1.0; -1.0, -0.5; 2.0, 1.5; -1.0, -2.0; -2.0, -0.5];
+# combinaciones = [0.5, 1.0; -1.0, -0.5; 2.0, 1.5; -1.0, -2.0; -2.0, -0.5];
+combinaciones = [-pi/2, pi/2; -pi/3, pi/3]
 % Iterar sobre las combinaciones
 for i = 1:size(combinaciones, 1)
     x0 = combinaciones(i, 1);
     x1 = combinaciones(i, 2);
-    n = 10; % Cantidad de iteraciones
+    n = 500; % Cantidad de iteraciones
 
     disp(["Combinación " num2str(i) ": x0 = " num2str(x0) ", x1 = " num2str(x1)]);
 
